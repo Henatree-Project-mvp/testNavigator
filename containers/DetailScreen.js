@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -11,12 +11,13 @@ import {
 } from "react-native";
 
 function DetailScreen({ route, navigation }) {
-  const { itemId, message } = route.params;
+  // const { itemId, message } = route.params;
+  const { value, setValue } = useState("");
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Detail Screen</Text>
-      <Text>ItemId : {itemId}</Text>
-      <Text>Message : {message}</Text>
+      {/* <Text>ItemId : {itemId}</Text>
+      <Text>Message : {message}</Text> */}
 
       <Button
         title="Go to detail again !!"
@@ -28,10 +29,18 @@ function DetailScreen({ route, navigation }) {
           })
         }
       />
-      <Button
-        title="Change message"
-        onPress={() => navigation.setParams({ message: "Nouveau message" })}
+      <TextInput
+        name="message"
+        placeholder="tape ton message ici"
+        value={value}
+        onChange={(text) => {
+          setValue(text);
+        }}
       />
+      {/* <Button
+        title="Change message"
+        onPress={() => navigation.setParams({ message: value })}
+      /> */}
       <Button title="Go back" onPress={() => navigation.goBack()} />
       <Button
         title="Go first screen home now!"
